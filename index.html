@@ -1,0 +1,29 @@
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+<script src="./lib.js"></script>
+<script src="./index.js"></script>
+
+<link href="./index.css" type="text/css" rel="stylesheet" />
+
+<script>
+$(function(){
+	onload();
+});
+</script>
+
+<body>
+	<h1>button generator</h1>
+
+	<div>
+	    <canvas class="canvas" id="canvas" width="300" height="200"></canvas>
+	    <canvas class="canvas" id="canvas_pressed" width="300" height="200"></canvas>
+	</div>
+
+	Width:<input type="number" name="quantity" min="1" max="5"><br>
+	Height:<input type="number" name="quantity" min="1" max="5"><br>
+	Text:<input type="text" name="example2" size="30" maxlength="30" value="サンプル"><br>
+	<a class="btn btn-primary" style="width:100px;" href="#" width="100" onclick="screenshot();">DL</a>
+</body>
