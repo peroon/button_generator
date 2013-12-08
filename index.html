@@ -11,6 +11,7 @@
 
 <script src="./lib.js"></script>
 <script src="./index.js"></script>
+<script src="./range.js"></script>
 
 <link href="./index.css" type="text/css" rel="stylesheet" />
 
@@ -40,31 +41,15 @@ $(function(){
 	</div>
 
 	<form id="ui_box" style="padding:10px;">
+
 		<!--slider-->
-		<!--angular test-->
-		<input type="range" class="on_change_update" id="range_ang" min="10" max="1000" step="2" ng-model="aaa_value">
-			<span class="label label-primary">width</span>
-			{{aaa_value}}<br>
-
-		<input type="range" class="on_change_update" id="range_width" min="10" max="1000" step="2">
-			<span class="label label-primary">width</span>
-			<span id="range_width_value">1</span><br>
-
-		<input type="range" class="on_change_update" id="range_height" min="10" max="1000" step="2">
-			<span class="label label-primary">height</span>
-			<span id="range_height_value">1</span><br>
-
-		<input type="range" class="on_change_update" id="range_offset_x" val="10" min="10" max="40" step="1">
-			<span class="label label-primary">offset_x</span>
-			<span id="range_offset_x_value">1</span><br>
-
-		<input type="range" class="on_change_update" id="range_offset_y" val="10" min="10" max="40" step="1">
-			<span class="label label-primary">offset_y</span>
-			<span id="range_offset_y_value">1</span><br>
-
-		<input type="range" class="on_change_update" id="range_text_size" min="10" max="50" step="2">
-			<span class="label label-primary">text_size</span>
-			<span id="range_text_size_value">1</span><br>
+		<div ng-controller="rangeController" >
+			<span ng-repeat="range in ranges">
+				<input type="range" class="on_change_update" id="range_{{range.id}}" min="{{range.min}}" max="{{range.max}}" step="{{range.step}}">
+					<span class="label label-primary">{{range.id}}</span>
+					<span id="range_{{range.id}}_value">1</span><br>
+			</span>
+		</div>
 
 		Text:<input class="on_change_update form-control" style="width:200px;" type="text" id="input_text" size="30" maxlength="30" value="テキスト"><br>
 
@@ -76,7 +61,6 @@ $(function(){
 		<br>
 		Button Color: <input class="on_change_update" id="input_color_button" type="color" value="#0000FF"><br>
 		Font Color:   <input class="on_change_update" id="input_color_font" type="color" value="#FFFFFF"><br>
-
 
 		<a class="btn btn-primary" style="width:100px;" href="#" width="100" onclick="screenshot();">DL</a>
 
