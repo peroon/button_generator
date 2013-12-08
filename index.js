@@ -8,6 +8,10 @@ var redraw = function(){
     drawButton('canvas_pressed');
 }
 
+function p(v){
+	console.log(v);
+}
+
 var drawButton = function(canvasName){
 
     var canvas = document.getElementById(canvasName);
@@ -46,6 +50,7 @@ var drawButton = function(canvasName){
 	context.shadowOffsetY = 3;
 	context.fill();
 	context.stroke();
+
 
 /*
 	//gradation
@@ -93,9 +98,39 @@ var drawButton = function(canvasName){
 	*/
 
 	//text
-	context.font = "30px Verdana";
-	context.fillStyle = 'rgb(255,255,0)';
-	context.fillText("button text",10,90);
+	var buttonText = $("#input_text").val();
+	//context.font = "30px Verdana";
+	//context.font = "40px Georgia, serif";
+	var font_type = $("#select_font").val();
+	var font_size = parseInt($("#range_text_size").val());
+	context.font = font_size+"px "+font_type
+	var font_color = $("#input_color_font").val();
+	context.fillStyle = font_color;
+	//position
+	var offsetX = $("#range_offset_x").val();
+	var offsetY = $("#range_offset_y").val();
+	context.fillText(buttonText,10+parseInt(offsetX),90+parseInt(offsetY));
 
 	context.restore();
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
