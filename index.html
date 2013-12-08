@@ -1,3 +1,6 @@
+<html lang="en" ng-app>
+<script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
@@ -38,6 +41,11 @@ $(function(){
 
 	<form id="ui_box" style="padding:10px;">
 		<!--slider-->
+		<!--angular test-->
+		<input type="range" class="on_change_update" id="range_ang" min="10" max="1000" step="2" ng-model="aaa_value">
+			<span class="label label-primary">width</span>
+			{{aaa_value}}<br>
+
 		<input type="range" class="on_change_update" id="range_width" min="10" max="1000" step="2">
 			<span class="label label-primary">width</span>
 			<span id="range_width_value">1</span><br>
@@ -75,3 +83,5 @@ $(function(){
 	</form>
 </body>
 
+
+</html>
