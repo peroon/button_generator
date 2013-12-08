@@ -23,11 +23,6 @@ $(function(){
 	});
 	$(".on_change_update").change(function(){
 		redraw();
-		var $this = $(this);
-		var val = $this.val();
-		var id = $this.attr("id");
-		//update label
-		$("#"+id+"_value").text(val);
 	});
 });
 </script>
@@ -45,9 +40,9 @@ $(function(){
 		<!--slider-->
 		<div ng-controller="rangeController" >
 			<span ng-repeat="range in ranges">
-				<input type="range" class="on_change_update" id="range_{{range.id}}" min="{{range.min}}" max="{{range.max}}" step="{{range.step}}">
+				<input type="range" class="on_change_update" id="range_{{range.id}}" min="{{range.min}}" max="{{range.max}}" step="{{range.step}}" ng-model="val">
 					<span class="label label-primary">{{range.id}}</span>
-					<span id="range_{{range.id}}_value">1</span><br>
+					{{val}}<br>
 			</span>
 		</div>
 
