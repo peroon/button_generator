@@ -13,10 +13,11 @@ function p(v){
 }
 
 var drawButton = function(canvasName){
-
     var canvas = document.getElementById(canvasName);
-    var W = canvas.width;
-    var H = canvas.height;
+    var W = $("#range_width").val();
+    var H = $("#range_height").val();
+    canvas.width = W;
+    canvas.height = H;
     var R = 30;
     var context = canvas.getContext('2d');
 
