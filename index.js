@@ -53,9 +53,8 @@ var drawButton = function(canvasName){
 	context.stroke();
 
 
-/*
 	//gradation
-	var grad  = context.createLinearGradient(0,0, 0,140);
+	var grad  = context.createLinearGradient(0, 0, 0, H);
 	grad.addColorStop(0,'rgb(0,200,255)');
 	grad.addColorStop(0.5,'rgb(0,150,255)');
 	grad.addColorStop(1,'rgb(0,100,255)');
@@ -65,6 +64,7 @@ var drawButton = function(canvasName){
 	context.restore();
 	context.save();
 
+/*
 	context.fillStyle = 'rgb(255,255,255)';
 
 	context.beginPath();
@@ -84,19 +84,20 @@ var drawButton = function(canvasName){
 	context.shadowOffsetX = 3;
 	context.shadowOffsetY = 3;
 	context.clip();
+	*/
 
 	//glitter
 	context.scale(1, 0.5);
 	context.fillStyle = 'rgba(255,255,255,0.2)';
 	context.beginPath();
-	context.arc(70, 75, 80, 0, Math.PI*2, false);
+	context.arc(W/2, 0, W, 0, Math.PI*2, false);
 	context.closePath();
 	context.shadowBlur   = 0;
 	context.shadowColor = '#FFFFFF';
 	context.shadowOffsetX = 0;
 	context.shadowOffsetY = 0;
 	context.fill();
-	*/
+	context.restore();
 
 	//text
 	var buttonText = $("#input_text").val();
