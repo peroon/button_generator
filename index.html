@@ -40,7 +40,10 @@ $(function(){
 		<!--slider-->
 		<div ng-controller="rangeController" >
 			<span ng-repeat="range in ranges">
-				<input type="range" class="on_change_update" id="range_{{range.id}}" min="{{range.min}}" max="{{range.max}}" step="{{range.step}}" ng-model="val">
+				<span class="label label-success slider-range">{{range.min}}</span>
+					<input type="range" class="on_change_update" id="range_{{range.id}}" min="{{range.min}}" max="{{range.max}}" step="{{range.step}}" ng-model="val">
+				<span class="label label-success slider-range">{{range.max}}</span>
+
 					<span class="label label-primary">{{range.id}}</span>
 					{{val}}<br>
 			</span>
