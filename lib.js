@@ -1,10 +1,10 @@
 //http://jsdo.it/Yukisuke/p311
-function screenshot()
+function screenshot(canvasName)
 {
-    var canvas = document.getElementById("canvas");
+    var canvas = document.getElementById(canvasName);
     var base64 = canvas.toDataURL();    // firfoxならtoblobで直接blobにして保存できます。
     var blob = Base64toBlob(base64);
-    saveBlob(blob,"default.png");
+    saveBlob(blob,canvasName+".png");
 }
 var onload = function()
 {
