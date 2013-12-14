@@ -18,28 +18,30 @@ var drawButton = function(canvasName){
     var H = $("#range_height").val();
     canvas.width = W;
     canvas.height = H;
-    var R = 30;
     var context = canvas.getContext('2d');
-
 	context.clearRect(0, 0, W, H);
 	context.strokeStyle = 'rgb(00,50,255)'; //stroke blue
 	context.fillStyle = 'rgb(0,0,0)';//fill black
 
 	context.save();
 
+	//roundness
+    var R = 20;
+	$("#range_round").val(25);
+
 	//round rect
 	context.beginPath();
 	//lower R
-	context.arc(W-35, H-35, R, 0 * Math.PI / 180, 90 * Math.PI / 180, false);
-	context.lineTo(35, H-5);
+	context.arc(W-5-R, H-5-R, R, 0 * Math.PI / 180, 90 * Math.PI / 180, false);
+	context.lineTo(5+R, H-5);
 	//lower L
-	context.arc(35, H-35, R, 90 * Math.PI / 180, 180 * Math.PI / 180, false);
-	context.lineTo(5, 35);
+	context.arc(5+R, H-5-R, R, 90 * Math.PI / 180, 180 * Math.PI / 180, false);
+	context.lineTo(5, 5+R);
 	//upper L
-	context.arc(35, 35, R, 180 * Math.PI / 180, 270 * Math.PI / 180, false);
-	context.lineTo(105, 05);
+	context.arc(5+R, 5+R, R, 180 * Math.PI / 180, 270 * Math.PI / 180, false);
+	context.lineTo(105, 5);
 	//upper R
-	context.arc(W-35, 35, R, 270 * Math.PI / 180, 360 * Math.PI / 180, false);
+	context.arc(W-5-R, 5+R, R, 270 * Math.PI / 180, 360 * Math.PI / 180, false);
 	context.lineTo(W-5, 105);
 
 	context.closePath();
