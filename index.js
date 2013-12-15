@@ -60,14 +60,11 @@ var drawButton = function(canvasName){
 	//var R = $("#range_round").val();
 	var R = 20;
 
-	p(R);
-
 	var param = {};
 	param.W = W;
 	param.H = H;
 	param.R = R;
 	drawRoundRect(context, param);
-
 
 	context.lineWidth = 3;
 	context.shadowBlur   = 5;
@@ -77,7 +74,6 @@ var drawButton = function(canvasName){
 	context.fill();
 	context.stroke();
 
-
 	//gradation
 	var grad  = context.createLinearGradient(0, 0, 0, H);
 	grad.addColorStop(0,'rgb(0,200,255)');
@@ -85,31 +81,8 @@ var drawButton = function(canvasName){
 	grad.addColorStop(1,'rgb(0,100,255)');
 	context.fillStyle = grad;
 	context.fill();
-
 	context.restore();
 	context.save();
-
-/*
-	context.fillStyle = 'rgb(255,255,255)';
-
-	context.beginPath();
-	context.arc(105, 105, R, 0 * Math.PI / 180, 90 * Math.PI / 180, false);
-	context.lineTo(35, 135);
-	context.arc(35, 105, R, 90 * Math.PI / 180, 180 * Math.PI / 180, false);
-	context.lineTo(05, 35);
-	context.arc(35, 35, R, 180 * Math.PI / 180, 270 * Math.PI / 180, false);
-	context.lineTo(105, 05);
-	context.arc(105, 35, R, 270 * Math.PI / 180, 360 * Math.PI / 180, false);
-	context.lineTo(135, 105);
-	context.closePath();
-
-	context.lineWidth = 3;
-	context.shadowBlur   = 5;
-	context.shadowColor = '#003377';
-	context.shadowOffsetX = 3;
-	context.shadowOffsetY = 3;
-	context.clip();
-	*/
 
 	//glitter
 	context.scale(1, 0.5);
@@ -140,21 +113,6 @@ var drawButton = function(canvasName){
 
 	context.restore();
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

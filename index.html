@@ -28,43 +28,52 @@ $(function(){
 </script>
 
 <body>
-	<h1>button generator</h1>
 
-	<div>
-	    <canvas class="canvas" id="canvas" width="300" height="200"></canvas>
-	    <canvas class="canvas" id="canvas_pressed" width="300" height="200"></canvas>
+	<div class="container">
+		<div class="row">
+
+			<!--UI-->
+			<div class="col-md-4">
+				<h1>button generator</h1>
+				<form id="ui_box" style="padding:10px;">
+
+					<!--slider-->
+					<div ng-controller="rangeController" >
+						<span ng-repeat="range in ranges">
+							<span class="label label-success slider-range">{{range.min}}</span>
+								<input type="range" class="on_change_update" id="range_{{range.id}}" min="{{range.min}}" max="{{range.max}}" step="{{range.step}}" ng-model="val">
+							<span class="label label-success slider-range">{{range.max}}</span>
+
+								<span class="label label-primary">{{range.id}}</span>
+								{{val}}<br>
+						</span>
+					</div>
+
+					Text:<input class="on_change_update form-control" style="width:200px;" type="text" id="input_text" size="30" maxlength="30" value="テキスト"><br>
+
+					Font : <select class="on_change_update" id="select_font">
+						<option value="Georgia">Georgia</option>
+						<option value="Times">Times</option>
+						<option value="Impact">Impact</option>
+					</select>
+					<br>
+					Button Color: <input class="on_change_update" id="input_color_button" type="color" value="#0000FF"><br>
+					Font Color:   <input class="on_change_update" id="input_color_font" type="color" value="#FFFFFF"><br>
+
+
+				</form>
+			</div>
+
+			<!--Buttons-->
+			<div class="col-md-8">
+			    <canvas class="canvas" id="canvas" width="300" height="200"></canvas>
+					<a class="btn btn-primary" style="width:100px;" href="#" width="100" onclick="screenshot('canvas');">DL</a><br>
+			    <canvas class="canvas" id="canvas_pressed" width="300" height="200"></canvas>
+					<a class="btn btn-primary" style="width:100px;" href="#" width="100" onclick="screenshot('canvas_pressed');">DL(pressed)</a>
+			</div>
+
+		</div>
 	</div>
 
-	<form id="ui_box" style="padding:10px;">
-
-		<!--slider-->
-		<div ng-controller="rangeController" >
-			<span ng-repeat="range in ranges">
-				<span class="label label-success slider-range">{{range.min}}</span>
-					<input type="range" class="on_change_update" id="range_{{range.id}}" min="{{range.min}}" max="{{range.max}}" step="{{range.step}}" ng-model="val">
-				<span class="label label-success slider-range">{{range.max}}</span>
-
-					<span class="label label-primary">{{range.id}}</span>
-					{{val}}<br>
-			</span>
-		</div>
-
-		Text:<input class="on_change_update form-control" style="width:200px;" type="text" id="input_text" size="30" maxlength="30" value="テキスト"><br>
-
-		Font : <select class="on_change_update" id="select_font">
-			<option value="Georgia">Georgia</option>
-			<option value="Times">Times</option>
-			<option value="Impact">Impact</option>
-		</select>
-		<br>
-		Button Color: <input class="on_change_update" id="input_color_button" type="color" value="#0000FF"><br>
-		Font Color:   <input class="on_change_update" id="input_color_font" type="color" value="#FFFFFF"><br>
-
-		<a class="btn btn-primary" style="width:100px;" href="#" width="100" onclick="screenshot('canvas');">DL</a>
-		<a class="btn btn-primary" style="width:100px;" href="#" width="100" onclick="screenshot('canvas_pressed');">DL(pressed)</a>
-
-	</form>
 </body>
-
-
 </html>
