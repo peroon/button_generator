@@ -12,22 +12,18 @@ function p(v){
 	console.log(v);
 }
 
-var drawButton = function(canvasName){
-    var canvas = document.getElementById(canvasName);
-    var W = $("#range_width").val();
-    var H = $("#range_height").val();
-    canvas.width = W;
-    canvas.height = H;
-    var context = canvas.getContext('2d');
-	context.clearRect(0, 0, W, H);
-	context.strokeStyle = 'rgb(00,50,255)'; //stroke blue
-	context.fillStyle = 'rgb(0,0,0)';//fill black
+function initCanvas(){
+	//slider default value
+	$("#range_round").val(20);
+	$("#range_text_size").val(25);
 
-	context.save();
+	drawToCanvas();
+}
 
-	//roundness
-    var R = 20;
-	$("#range_round").val(25);
+var drawRoundRect = function(context, param){
+	var W = param.W;
+	var H = param.H;
+	var R = param.R;
 
 	//round rect
 	context.beginPath();
@@ -45,6 +41,33 @@ var drawButton = function(canvasName){
 	context.lineTo(W-5, 105);
 
 	context.closePath();
+}
+
+
+var drawButton = function(canvasName){
+    var canvas = document.getElementById(canvasName);
+    var W = $("#range_width").val();
+    var H = $("#range_height").val();
+    canvas.width = W;
+    canvas.height = H;
+    var context = canvas.getContext('2d');
+	context.clearRect(0, 0, W, H);
+	context.strokeStyle = 'rgb(00,50,255)'; //stroke blue
+	context.fillStyle = 'rgb(0,0,0)';//fill black
+
+	context.save();
+
+	//var R = $("#range_round").val();
+	var R = 20;
+
+	p(R);
+
+	var param = {};
+	param.W = W;
+	param.H = H;
+	param.R = R;
+	drawRoundRect(context, param);
+
 
 	context.lineWidth = 3;
 	context.shadowBlur   = 5;

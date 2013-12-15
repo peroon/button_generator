@@ -8,7 +8,7 @@ function screenshot(canvasName)
 }
 var onload = function()
 {
-  drawToCanvas();
+  initCanvas();
 };
 
 var drawToCanvas = function()
