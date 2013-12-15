@@ -14,6 +14,7 @@ function p(v){
 
 function initCanvas(){
 	//slider default value
+	$("#range_width").val(400);
 	$("#range_round").val(20);
 	$("#range_text_size").val(25);
 
@@ -84,8 +85,10 @@ var drawButton = function(canvasName){
 	context.restore();
 	context.save();
 
+	var aspectR = W/H;
 	//glitter
-	context.scale(1, 0.5);
+	context.scale(1, 1/(aspectR*2));
+	p(aspectR);
 	context.fillStyle = 'rgba(255,255,255,0.2)';
 	context.beginPath();
 	context.arc(W/2, 0, W, 0, Math.PI*2, false);
@@ -107,8 +110,8 @@ var drawButton = function(canvasName){
 	var font_color = $("#input_color_font").val();
 	context.fillStyle = font_color;
 	//position
-	var offsetX = $("#range_offset_x").val();
-	var offsetY = $("#range_offset_y").val();
+	var offsetX = $("#range_text_offset_x").val();
+	var offsetY = $("#range_text_offset_y").val();
 	context.fillText(buttonText,10+parseInt(offsetX),90+parseInt(offsetY));
 
 	context.restore();
