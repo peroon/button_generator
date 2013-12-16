@@ -20,6 +20,9 @@ function initCanvas(){
 	$("#range_text_size").val(50);
 
 	drawToCanvas();
+
+	var c = new Color();
+	p(c.toString());
 }
 
 var drawRoundRect = function(context, param){
