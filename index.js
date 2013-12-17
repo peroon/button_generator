@@ -8,10 +8,6 @@ var redraw = function(){
     drawButton('canvas_pressed');
 }
 
-function p(v){
-	console.log(v);
-}
-
 function initCanvas(){
 	//slider default value
 	$("#range_width").val(400);
@@ -22,7 +18,9 @@ function initCanvas(){
 	drawToCanvas();
 
 	var c = new Color();
-	p(c.toString());
+	c = Color.makeRGB(255,0,0);
+	console.log(c.toString());
+	$("#color_debug").html(c.toString());
 }
 
 var drawRoundRect = function(context, param){

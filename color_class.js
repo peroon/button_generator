@@ -5,35 +5,57 @@ var Color = function() {
     this.h = this.s = this.l = 0;
     this.a = 1;
 };
-/** RGB */
-Color.prototype.cssRGB = function() {
-    return "rgb("+Math.round(255*this.r)+","+Math.round(255*this.g)+","+Math.round(255*this.b)+")";
-};
-Color.prototype.cssRGBA = function() {
-    return "rgba("+Math.round(255*this.r)+","+Math.round(255*this.g)+","+Math.round(255*this.b)+","+Math.round(this.a)+")";
-};
+
+//get individually
 Color.prototype.red = function() { return this.r; };
 Color.prototype.green = function() { return this.g; };
 Color.prototype.blue = function() { return this.b; };
-/** HSL */
-Color.prototype.cssHSL = function() {
-    return "hsl("+Math.round(360*this.h)+","+Math.round(100*this.s)+"%,"+Math.round(100*this.l)+"%)";
-};
-Color.prototype.cssHSLA = function() {
-    return "hsla("+Math.round(360*this.h)+","+Math.round(100*this.s)+"%,"+Math.round(100*this.l)+"%,"+Math.round(this.a)+")";
-};
 Color.prototype.hue = function() { return this.h; };
 Color.prototype.saturation = function() { return this.s; };
 Color.prototype.lightness = function() { return this.l; };
-/** HEX */
+Color.prototype.alpha = function() { return this.a; };
+
+//get as 0-255
+Color.prototype.R = function() { return Math.round(255*this.r); }
+Color.prototype.G = function() { return Math.round(255*this.g); }
+Color.prototype.B = function() { return Math.round(255*this.b); }
+Color.prototype.H = function() { return Math.round(255*this.h); }
+Color.prototype.S = function() { return Math.round(255*this.s); }
+Color.prototype.L = function() { return Math.round(255*this.l); }
+Color.prototype.A = function() { return Math.round(255*this.a); }
+
+//get as string
+Color.prototype.cssRGB = function() {
+	//return "rgb("+Math.round(255*this.r)+","+Math.round(255*this.g)+","+Math.round(255*this.b)+")";
+    return "rgb("+this.R()+","+this.G()+","+this.B()+")";
+};
+Color.prototype.cssRGBA = function() {
+    //return "rgba("+Math.round(255*this.r)+","+Math.round(255*this.g)+","+Math.round(255*this.b)+","+Math.round(this.a)+")";
+    return "rgba("+this.R()+","+this.G()+","+this.B()+","+this.A()+")";
+};
+Color.prototype.cssHSL = function() {
+    return "hsl("+this.H()+","+this.S()+"%,"+this.L()+"%)";
+    //return "hsl("+Math.round(360*this.h)+","+Math.round(100*this.s)+"%,"+Math.round(100*this.l)+"%)";
+};
+Color.prototype.cssHSLA = function() {
+    //return "hsla("+Math.round(360*this.h)+","+Math.round(100*this.s)+"%,"+Math.round(100*this.l)+"%,"+Math.round(this.a)+")";
+    return "hsla("+this.H()+","+this.S()+"%,"+this.L()+"%,"+this.A()+")";
+};
 Color.prototype.cssHEX = function() {
     return "#" + 
         (255*this.r < 16 ? "0" : "") + Math.round(255*this.r).toString(16) +
         (255*this.g < 16 ? "0" : "") + Math.round(255*this.g).toString(16) + 
         (255*this.b < 16 ? "0" : "") + Math.round(255*this.b).toString(16);
 }
-/** Transparency */
-Color.prototype.alpha = function() { return this.a; };
+
+//get as array
+Color.prototype.rgbArray = function(){
+	return [this.R(), this.G(), this.B()];
+}
+Color.prototype.hslArray = function(){
+	return [this.H(), this.S(), this.L()];
+}
+
 /** Modifiers */
 Color.prototype.saturate = function(v) {
     if("string" == typeof v && v.indexOf("%") > -1 && (v = parseInt(v)) != 'NaN')
@@ -44,9 +66,6 @@ Color.prototype.saturate = function(v) {
     if(this.s > 1) this.s = 1; else if(this.s < 0) this.s = 0;
     Color.Convertor.HSLToRGB.apply(this);
 };
-Color.prototype.desaturate = function(v) {
-    this.saturate("-" + v);
-};
 Color.prototype.lighten = function(v) {
     if("string" == typeof v && v.indexOf("%") > -1 && (v = parseInt(v)) != 'NaN')
         this.l += v/100;
@@ -56,9 +75,6 @@ Color.prototype.lighten = function(v) {
     if(this.l > 1) this.l = 1; else if(this.l < 0) this.l = 0;
     Color.Convertor.HSLToRGB.apply(this);
 };
-Color.prototype.darken = function(v) {
-    this.ligthen("-" + v);
-};
 Color.prototype.fadein = function(v) {
     if("string" == typeof v && v.indexOf("%") > -1 && (v = parseInt(v)) != 'NaN')
         this.a += v/100;
@@ -67,9 +83,6 @@ Color.prototype.fadein = function(v) {
     else throw new Error("error: bad modifier format (percent or number)");
     if(this.a > 1) this.a = 1; else if(this.a < 0) this.a = 0;
     Color.Convertor.HSLToRGB.apply(this);
-};
-Color.prototype.fadeout = function(v) {
-    this.fadein("-" + v);
 };
 Color.prototype.spin = function(v) {
     if("string" == typeof v && v.indexOf("%") > -1 && (v = parseInt(v)) != 'NaN')
@@ -82,7 +95,7 @@ Color.prototype.spin = function(v) {
 };
 /** Debug */
 Color.prototype.toString = function() {
-    return "<span style=\"color: "+this.cssRGB()+"\">"+this.cssRGB()+"</span> / <span style=\"color: "+this.cssHSL()+"\">"+this.cssHSL()+"</span> / <span style=\"color: "+this.cssHEX()+"\">"+this.cssHEX()+"</span> / alpha: "+this.a+"";
+    return "<span style=\"color:"+this.cssRGB()+";\">"+this.cssRGB()+"</span>";
 };
  
 Color.makeRGB = function() {
