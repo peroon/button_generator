@@ -19,9 +19,9 @@ Color.prototype.alpha = function() { return this.a; };
 Color.prototype.R = function() { return Math.round(255*this.r); }
 Color.prototype.G = function() { return Math.round(255*this.g); }
 Color.prototype.B = function() { return Math.round(255*this.b); }
-Color.prototype.H = function() { return Math.round(255*this.h); }
-Color.prototype.S = function() { return Math.round(255*this.s); }
-Color.prototype.L = function() { return Math.round(255*this.l); }
+Color.prototype.H = function() { return Math.round(360*this.h); }
+Color.prototype.S = function() { return Math.round(100*this.s); }
+Color.prototype.L = function() { return Math.round(100*this.l); }
 Color.prototype.A = function() { return Math.round(255*this.a); }
 
 //get as string
@@ -95,7 +95,10 @@ Color.prototype.spin = function(v) {
 };
 /** Debug */
 Color.prototype.toString = function() {
-    return "<span style=\"color:"+this.cssRGB()+";\">"+this.cssRGB()+"</span>";
+	var tag = "<span style=\"color:"+this.cssRGB()+";\">"+this.cssRGB()+"</span>";
+	tag += "<br>";
+	tag += "<span style=\"color:"+this.cssHSL()+";\">"+this.cssHSL()+"</span>";
+    return tag;
 };
  
 Color.makeRGB = function() {

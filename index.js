@@ -18,7 +18,7 @@ function initCanvas(){
 	drawToCanvas();
 
 	var c = new Color();
-	c = Color.makeRGB(255,0,0);
+	c = Color.makeRGB(255,128,0);
 	console.log(c.toString());
 	$("#color_debug").html(c.toString());
 }
