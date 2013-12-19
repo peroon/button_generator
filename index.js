@@ -4,6 +4,7 @@ var drawToCanvas = function()
 };
 
 var redraw = function(){
+	console.log('redraw');
     drawButton('canvas');
     drawButton('canvas_pressed');
 }
@@ -55,6 +56,10 @@ var drawRoundRect = function(context, param){
 }
 
 
+function p(v){
+	console.log(v);
+}
+
 var drawButton = function(canvasName){
     var canvas = document.getElementById(canvasName);
     var W = $("#range_width").val();
@@ -85,13 +90,16 @@ var drawButton = function(canvasName){
 	param.R = R;
 	drawRoundRect(context, param);
 
-	context.lineWidth = 3;
-	context.shadowBlur   = 5;
-	context.shadowColor = '#003377';
-	context.shadowOffsetX = 3;
-	context.shadowOffsetY = 3;
-	context.fill();
-	context.stroke();
+	var isShadow = $("#checkbox_shadow").is(':checked');
+	if(isShadow){
+		context.lineWidth = 3;
+		context.shadowBlur   = 5;
+		context.shadowColor = '#003377';
+		context.shadowOffsetX = 3;
+		context.shadowOffsetY = 3;
+		context.fill();
+		context.stroke();
+	}
 
 	var gradationColorArray = [];
 	gradationColorArray.push(colorRgbStr);
@@ -109,12 +117,10 @@ var drawButton = function(canvasName){
 	gradationColorArray.push(colorRgbStr);
 
 	//gradation
+	var isGradation= $("#checkbox_gradation").is(':checked');
+	if(isGradation){
+	}
 	var grad  = context.createLinearGradient(0, 0, 0, H);
-	/*
-	grad.addColorStop(0.0,'rgb(0,200,255)');
-	grad.addColorStop(0.5,'rgb(0,150,255)');
-	grad.addColorStop(1.0,'rgb(0,100,255)');
-	*/
 	grad.addColorStop(0.0, gradationColorArray[0]);
 	grad.addColorStop(0.5, gradationColorArray[1]);
 	grad.addColorStop(1.0, gradationColorArray[2]);
