@@ -9,14 +9,22 @@ var redraw = function(){
 }
 
 function initCanvas(){
+	var defaultW = 400;
+	var defaultH = 200;
+
 	//slider default value
-	$("#range_width").val(400);
-	$("#range_height").val(200);
+	$("#range_width").val(defaultW);
+	$("#range_height").val(defaultH);
 	$("#range_round").val(20);
 	$("#range_text_size").val(50);
 
+	//view
+	$("#button_width_view").text(defaultW);
+	$("#button_height_view").text(defaultH);
+
 	drawToCanvas();
 
+	//DEBUG
 	var c = new Color();
 	c = Color.makeRGB(255,128,0);
 	console.log(c.toString());
@@ -51,9 +59,12 @@ var drawButton = function(canvasName){
     var canvas = document.getElementById(canvasName);
     var W = $("#range_width").val();
     var H = $("#range_height").val();
+	$("#button_width_view").text(W);
+	$("#button_height_view").text(H);
     canvas.width = W;
     canvas.height = H;
     var context = canvas.getContext('2d');
+    //DEBUG
 	context.clearRect(0, 0, W, H);
 
 	var buttonColor = $("#input_color_button").val();
