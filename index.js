@@ -37,20 +37,22 @@ var drawRoundRect = function(context, param){
 	var H = param.H;
 	var R = param.R;
 
+	var offset = 5;
+
 	//round rect
 	context.beginPath();
 	//lower R
-	context.arc(W-5-R, H-5-R, R, 0 * Math.PI / 180, 90 * Math.PI / 180, false);
-	context.lineTo(5+R, H-5);
+	context.arc(W-offset-R, H-offset-R, R, 0 * Math.PI / 180, 90 * Math.PI / 180, false);
+	context.lineTo(offset+R, H-offset);
 	//lower L
-	context.arc(5+R, H-5-R, R, 90 * Math.PI / 180, 180 * Math.PI / 180, false);
-	context.lineTo(5, 5+R);
+	context.arc(offset+R, H-offset-R, R, 90 * Math.PI / 180, 180 * Math.PI / 180, false);
+	context.lineTo(offset, offset+R);
 	//upper L
-	context.arc(5+R, 5+R, R, 180 * Math.PI / 180, 270 * Math.PI / 180, false);
-	context.lineTo(105, 5);
+	context.arc(offset+R, offset+R, R, 180 * Math.PI / 180, 270 * Math.PI / 180, false);
+	context.lineTo(100+offset, offset);
 	//upper R
-	context.arc(W-5-R, 5+R, R, 270 * Math.PI / 180, 360 * Math.PI / 180, false);
-	context.lineTo(W-5, 105);
+	context.arc(W-offset-R, offset+R, R, 270 * Math.PI / 180, 360 * Math.PI / 180, false);
+	context.lineTo(W-offset, 100+offset);
 
 	context.closePath();
 }
@@ -92,41 +94,42 @@ var drawButton = function(canvasName){
 
 	var isShadow = $("#checkbox_shadow").is(':checked');
 	if(isShadow){
-		context.lineWidth = 3;
-		context.shadowBlur   = 5;
-		context.shadowColor = '#003377';
-		context.shadowOffsetX = 3;
-		context.shadowOffsetY = 3;
+		var shadowWidth = 2;
+		context.lineWidth = shadowWidth;
+		context.shadowBlur   = shadowWidth+1;
+		context.shadowColor = '#222222';
+		context.shadowOffsetX = shadowWidth;
+		context.shadowOffsetY = shadowWidth;
 		context.fill();
-		context.stroke();
 	}
 
 	var gradationColorArray = [];
 	gradationColorArray.push(colorRgbStr);
 	var colorHsl = rgbToHsl(colorRgb);
 
-	var lightUp = 0.1;
-	colorHsl[2] += lightUp;
-	colorRgb = hslToRgb(colorHsl)
-	colorRgbStr = toRgbString(colorRgb);
-	gradationColorArray.push(colorRgbStr);
-
-	colorHsl[2] += lightUp;
-	colorRgb = hslToRgb(colorHsl)
-	colorRgbStr = toRgbString(colorRgb);
-	gradationColorArray.push(colorRgbStr);
-
 	//gradation
 	var isGradation= $("#checkbox_gradation").is(':checked');
+	var lightUp = 0.0;
 	if(isGradation){
+		lightUp = 0.1;
 	}
+	//gradation color
+	colorHsl[2] += lightUp;
+	colorRgb = hslToRgb(colorHsl)
+	colorRgbStr = toRgbString(colorRgb);
+	gradationColorArray.push(colorRgbStr);
+	colorHsl[2] += lightUp;
+	colorRgb = hslToRgb(colorHsl)
+	colorRgbStr = toRgbString(colorRgb);
+	gradationColorArray.push(colorRgbStr);
+
 	var grad  = context.createLinearGradient(0, 0, 0, H);
 	grad.addColorStop(0.0, gradationColorArray[0]);
 	grad.addColorStop(0.5, gradationColorArray[1]);
 	grad.addColorStop(1.0, gradationColorArray[2]);
-
 	context.fillStyle = grad;
 	context.fill();
+
 	context.restore();
 	context.save();
 
