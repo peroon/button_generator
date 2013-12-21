@@ -135,17 +135,22 @@ var drawButton = function(canvasName){
 
 	var aspectR = W/H;
 	//glitter
-	context.scale(1, 1/(aspectR*2));
-	context.fillStyle = 'rgba(255,255,255,0.2)';
-	context.beginPath();
-	context.arc(W/2, 0, W, 0, Math.PI*2, false);
-	context.closePath();
-	context.shadowBlur   = 0;
-	context.shadowColor = '#FFFFFF';
-	context.shadowOffsetX = 0;
-	context.shadowOffsetY = 0;
-	context.fill();
-	context.restore();
+	var isGlitter = true;
+	if(isGlitter){
+		context.globalCompositeOperation = 'source-atop';
+			context.scale(1, 1/(aspectR*2));
+			context.fillStyle = 'rgba(255,255,255,0.2)';
+			context.beginPath();
+			context.arc(W/2, 0, W, 0, Math.PI*2, false);
+			context.closePath();
+			context.shadowBlur   = 0;
+			context.shadowColor = '#FFFFFF';
+			context.shadowOffsetX = 0;
+			context.shadowOffsetY = 0;
+			context.fill();
+			context.restore();
+		context.globalCompositeOperation = 'source-over';
+	}
 
 	//text
 	var buttonText = $("#input_text").val();
