@@ -100,7 +100,7 @@ Color.prototype.toString = function() {
 	tag += "<span style=\"color:"+this.cssHSL()+";\">"+this.cssHSL()+"</span>";
     return tag;
 };
- 
+
 Color.makeRGB = function() {
     var c = new Color(),
         sanitized;
@@ -113,6 +113,16 @@ Color.makeRGB = function() {
     if(arguments.length == 4) c.a = arguments[3];
     Color.Convertor.RGBToHSL.apply(c);
     return c;
+};
+
+//ex. #0000ff
+Color.makeFromString = function() {
+	var colorStr = arguments[0];
+	var r = parseInt(colorStr.slice(1,3), 16);	
+	var g = parseInt(colorStr.slice(3,5), 16);	
+	var b = parseInt(colorStr.slice(5,7), 16);	
+	//p([r,g,b]);
+	return this.makeRGB(r,g,b);
 };
  
 Color.makeHSL = function() {

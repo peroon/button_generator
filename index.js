@@ -4,9 +4,13 @@ var drawToCanvas = function()
 };
 
 var redraw = function(){
-	console.log('redraw');
-    drawButton('canvas');
-    drawButton('canvas_pressed');
+	var buttonColor = $("#input_color_button").val();
+    drawButton('canvas', buttonColor);
+
+    var color = Color.makeFromString(buttonColor);
+    color.lighten(-100);
+    var pressedButtonColor = color.cssHEX();
+    drawButton('canvas_pressed', pressedButtonColor);
 }
 
 function initCanvas(){
@@ -17,6 +21,8 @@ function initCanvas(){
 	$("#range_width").val(defaultW);
 	$("#range_height").val(defaultH);
 	$("#range_round").val(20);
+	$("#range_text_offset_x").val(-15);
+	$("#range_text_offset_y").val(40);
 	$("#range_text_size").val(50);
 
 	//view
@@ -26,10 +32,8 @@ function initCanvas(){
 	drawToCanvas();
 
 	//DEBUG
-	var c = new Color();
-	c = Color.makeRGB(255,128,0);
-	console.log(c.toString());
-	$("#color_debug").html(c.toString());
+	var c = Color.makeRGB(255,128,0);
+	//$("#color_debug").html(c.toString());
 }
 
 var drawRoundRect = function(context, param){
@@ -62,7 +66,7 @@ function p(v){
 	console.log(v);
 }
 
-var drawButton = function(canvasName){
+var drawButton = function(canvasName, buttonColor){
     var canvas = document.getElementById(canvasName);
     var W = $("#range_width").val();
     var H = $("#range_height").val();
@@ -74,7 +78,6 @@ var drawButton = function(canvasName){
     //DEBUG
 	context.clearRect(0, 0, W, H);
 
-	var buttonColor = $("#input_color_button").val();
 	var colorRgb = strToRgb(buttonColor);
 	var colorRgbStr = toRgbString(colorRgb);
 
