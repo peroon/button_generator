@@ -86,8 +86,7 @@ var drawButton = function(canvasName, buttonColor){
 
 	context.save();
 
-	//var R = $("#range_round").val();
-	var R = 20;
+	var R = $("#range_round").val() - 0;
 
 	var param = {};
 	param.W = W;
