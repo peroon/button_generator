@@ -6,5 +6,6 @@ var rangeController = function($scope){
 		{"id":"text_offset_x", "min":-1000, "max":1000, "step":1, "text":"テキスト位置X"},
 		{"id":"text_offset_y", "min":-1000, "max":1000, "step":1, "text":"テキスト位置Y"},
 		{"id":"text_size", "min":10, "max":500, "step":1, "text":"テキストサイズ"},
+		{"id":"bright_diff", "min":0, "max":200, "step":1, "text":"ボタンの輝度差"},
 	];
 }

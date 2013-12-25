@@ -8,7 +8,8 @@ var redraw = function(){
     drawButton('canvas', buttonColor);
 
     var color = Color.makeFromString(buttonColor);
-    color.lighten(-100);
+    var bright_diff = $("#range_bright_diff").val();
+    color.lighten(-bright_diff);
     var pressedButtonColor = color.cssHEX();
     drawButton('canvas_pressed', pressedButtonColor);
 }
@@ -24,6 +25,7 @@ function initCanvas(){
 	$("#range_text_offset_x").val(-15);
 	$("#range_text_offset_y").val(40);
 	$("#range_text_size").val(50);
+	$("#range_bright_diff").val(100);
 
 	//view
 	$("#button_width_view").text(defaultW);
